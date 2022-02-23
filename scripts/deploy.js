@@ -1,8 +1,8 @@
 async function main() {
-    const Box = await ethers.getContractFactory("Box")
-    console.log("Deploying Box, ProxyAdmin, and then Proxy...")
-    const proxy = await upgrades.deployProxy(Box, [42], { initializer: 'store' })
-    console.log("Proxy of Box deployed to:", proxy.address)
+    const MyToken = await ethers.getContractFactory("MyToken")
+    console.log("Deploying MyToken, ProxyAdmin, and then Proxy...")
+    const proxy = await upgrades.deployProxy(MyToken,[],{kind: 'uups'})
+    console.log("Proxy of MyToken deployed to:", proxy.address)
 }
 
 main()

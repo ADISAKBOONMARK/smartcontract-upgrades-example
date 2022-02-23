@@ -2,7 +2,11 @@
   "name": "hardhat-project",
   "scripts": {
     "clean": "npx hardhat clean",
-    "test": "npx hardhat test"
+    "test": "npx hardhat test",
+    "deploy:ropsten": "npx hardhat run --network ropsten scripts/deploy.js",
+    "upgrade:v1tov2:ropsten": "npx hardhat run --network ropsten scripts/upgradeV1ToV2.js",
+    "upgrade:v2tov3:ropsten": "npx hardhat run --network ropsten scripts/upgradeV2ToV3.js",
+    "verify:ropsten": "npx hardhat verify --network ropsten"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.2",
@@ -14,9 +18,10 @@
   },
   "dependencies": {
     "@nomiclabs/hardhat-etherscan": "^2.1.7",
-    "@openzeppelin/contracts": "^4.4.1",
-    "@openzeppelin/contracts-upgradeable": "^4.4.1",
+    "@openzeppelin/contracts": "^4.5.0",
+    "@openzeppelin/contracts-upgradeable": "^4.5.1",
     "@openzeppelin/hardhat-upgrades": "^1.11.0",
+    "dotenv": "^16.0.0",
     "hardhat-deploy": "^0.7.9"
   }
 }

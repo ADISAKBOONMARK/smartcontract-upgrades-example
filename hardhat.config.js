@@ -1,3 +1,4 @@
+require('dotenv').config()
 require("@nomiclabs/hardhat-waffle")
 require("@nomiclabs/hardhat-ethers")
 require('@openzeppelin/hardhat-upgrades')
@@ -20,6 +21,7 @@ task("accounts", "Prints the list of accounts", async () => {
  * @type import('hardhat/config').HardhatUserConfig
  */
 const MAINNET_RPC_URL = process.env.MAINNET_RPC_URL || process.env.ALCHEMY_MAINNET_RPC_URL || "https://eth-mainnet.alchemyapi.io/v2/your-api-key"
+const ROPSTEN_RPC_URL = process.env.ROPSTEN_RPC_URL || "https://eth-ropsten.alchemyapi.io/v2/your-api-key"
 const RINKEBY_RPC_URL = process.env.RINKEBY_RPC_URL || "https://eth-rinkeby.alchemyapi.io/v2/your-api-key"
 const KOVAN_RPC_URL = process.env.KOVAN_RPC_URL || "https://eth-kovan.alchemyapi.io/v2/your-api-key"
 const MNEMONIC = process.env.MNEMONIC || "your mnemonic"
@@ -36,23 +38,31 @@ module.exports = {
     },
     rinkeby: {
       url: RINKEBY_RPC_URL,
-      // accounts: [PRIVATE_KEY],
-      accounts: {
-        mnemonic: MNEMONIC,
-      },
+      accounts: [PRIVATE_KEY],
+      // accounts: {
+      //   mnemonic: MNEMONIC,
+      // },
+      saveDeployments: true,
+    },
+    ropsten: {
+      url: ROPSTEN_RPC_URL,
+      accounts: [PRIVATE_KEY],
+      // accounts: {
+      //   mnemonic: MNEMONIC,
+      // },
       saveDeployments: true,
     },
   },
-  solidity: "0.8.2",
-  namedAccounts: {
-    deployer: {
-      default: 0, // here this will by default take the first account as deployer
-      1: 0 // similarly on mainnet it will take the first account as deployer. Note though that depending on how hardhat network are configured, the account 0 on one network can be different than on another
-    },
-    feeCollector: {
-      default: 1
-    }
-  },
+  solidity: "0.8.10",
+  // namedAccounts: {
+  //   deployer: {
+  //     default: 0, // here this will by default take the first account as deployer
+  //     1: 0 // similarly on mainnet it will take the first account as deployer. Note though that depending on how hardhat network are configured, the account 0 on one network can be different than on another
+  //   },
+  //   feeCollector: {
+  //     default: 1
+  //   }
+  // },
   etherscan: {
     // Your API key for Etherscan
     // Obtain one at https://etherscan.io/
