@@ -1,8 +1,5 @@
 require('dotenv').config()
-require("@nomiclabs/hardhat-waffle")
-require("@nomiclabs/hardhat-ethers")
 require('@openzeppelin/hardhat-upgrades')
-require("@nomiclabs/hardhat-etherscan")
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -53,7 +50,7 @@ module.exports = {
       saveDeployments: true,
     },
   },
-  solidity: "0.8.10",
+  solidity: "0.8.19",
   // namedAccounts: {
   //   deployer: {
   //     default: 0, // here this will by default take the first account as deployer

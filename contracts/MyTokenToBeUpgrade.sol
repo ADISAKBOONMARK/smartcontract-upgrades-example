@@ -5,7 +5,11 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 
-contract MyToken is Initializable, UUPSUpgradeable, OwnableUpgradeable {
+contract MyTokenToBeUpgrade is
+    Initializable,
+    UUPSUpgradeable,
+    OwnableUpgradeable
+{
     uint256 public a;
     uint256 public b;
     uint256 public c;
@@ -16,13 +20,18 @@ contract MyToken is Initializable, UUPSUpgradeable, OwnableUpgradeable {
     enum Status {
         INACTIVE,
         ACTIVE,
-        DEACTIVATED
+        DEACTIVATED,
+        REMOVE
     }
 
     /// @dev This empty reserved space is put in place to allow future versions to add new
     /// variables without shifting down storage in the inheritance chain.
     /// See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
-    uint256[44] private __gap;
+
+    string public g;
+    string public h;
+    uint256[42] private __gap;
+    // [44] to [42] because g, h used 2 slots.
 
     /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() initializer {}
